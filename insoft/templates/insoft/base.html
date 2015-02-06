@@ -1,0 +1,65 @@
+{% load static compress wagtailcore_tags insoft_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | ИНСОФТ{% endblock %}</title>
+
+	{% compress css %}
+		<link rel="stylesheet" href="{% static 'insoft/css/base.css' %}">
+	{% endcompress %}
+
+    {% compress js %}
+	    <script src="{% static 'insoft/js/vendor/jquery-1.9.1.js' %}"></script>
+	    <script src="{% static 'insoft/js/vendor/jquery.collapse-1.1.0.js' %}"></script>
+	    <script src="{% static 'insoft/js/adjust_height.js' %}"></script>
+    {% endcompress %}
+</head>
+<body>
+
+    <div class="layout-base">
+	    <div class="layout-base__head">
+		    {% include 'insoft/include/header.html' %}
+		    {% main_menu current_page=self %}
+	    </div>
+	    <div class="layout-base__body">
+		    <div class="content">
+			    <div class="content__side-panel">
+				    {% block side_panels %}{% endblock %}
+			    </div>
+			    <div class="content__workspace">
+				    {% block workspace %}
+					    <div class="workspace">
+						    <div class="workspace__head">
+							    {% block workspace_head %}{% endblock %}
+						    </div>
+						    <div class="workspace__body">
+							    {% block workspace_body %}{% endblock %}
+						    </div>
+						    <div class="workspace__foot">
+							    {% block workspace_foot %}{% endblock %}
+						    </div>
+					    </div>
+				    {% endblock %}
+			    </div>
+		        <div class="clear"></div>
+		    </div>
+	    </div>
+	    <div class="layout-base__foot">
+		    {% include 'insoft/include/clients.html' %}
+		    <!-- start: b-footer -->
+		    <div class="b-footer">
+			    <div class="b-footer__copyright">
+				    ЗАО ИВЦ ИНСОФТ&nbsp;&nbsp;&nbsp;Все права защищены
+			    </div>
+			    <div class="b-footer__report-error">
+				    <a href="#">Сообщить об ошибке</a>
+			    </div>
+		    </div>
+		    <!-- end: b-footer -->
+	    </div>
+    </div>
+
+</body>
+</html>

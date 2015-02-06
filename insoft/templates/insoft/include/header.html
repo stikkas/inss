@@ -1,0 +1,71 @@
+{% load static i18n wagtailcore_tags %}
+
+<!-- start:  header -->
+<div class="header">
+	<div class="header__logo">
+		<a href="{% pageurl request.site.root_page %}">
+			<img src="{% static 'insoft/img/logo.png' %}" title="ИНСОФТ - 24 года на рынке информационных технологий">
+		</a>
+	</div>
+
+	<div class="header__liner"></div>
+
+	<div class="header__locations">
+		<!-- start: locations -->
+		<ul class="locations">
+			<li class="locations__item">
+				<div class="location">
+					<span class="location__address-city">Москва</span>
+					<span class="location__address-street">Гамсоновский переулок,</span>
+					<span class="location__address-home">д. 2</span>
+					<div class="location__phone">
+						<span class="location__phone-code">+7 (495)</span>
+						<span class="location__phone-number">933-95-30</span>
+					</div>
+				</div>
+			</li>
+			<li class="locations__item">
+				<div class="location">
+					<span class="location__address-city">Санкт-Петербург</span>
+					<span class="location__address-street">Улица Шпалерная,</span>
+					<span class="location__address-home">д. 51, лит. "А"</span>
+					<div class="location__phone">
+						<span class="location__phone-code">+7 (812)</span>
+						<span class="location__phone-number">703-55-05</span>
+					</div>
+				</div>
+			</li>
+			<li class="locations__item">
+				<div class="location">
+					<span class="location__address-city">Нижний Новгород</span>
+					<span class="location__address-street">Улица Белинского,</span>
+					<span class="location__address-home">д. 32</span>
+					<div class="location__phone">
+						<span class="location__phone-code">+7 (831)</span>
+						<span class="location__phone-number">233-30-01</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<!-- end: locations -->
+	</div>
+
+	<div class="header__liner"></div>
+
+	<div class="header__links">
+		<!-- start: header-links -->
+		<ul class="header-links">
+			<li class="header-links__write-mail">
+				<a href="#">{% trans 'Написать письмо' %}</a>
+			</li>
+			<li class="header-links__send-request">
+				<a href="#">{% trans 'Отправить запрос' %}</a>
+			</li>
+			<li class="header-links__search">
+				<a href="#">{% trans 'Поиск' %}</a>
+			</li>
+		</ul>
+		<!-- end: header-links -->
+	</div>
+</div>
+<!-- end:  header -->

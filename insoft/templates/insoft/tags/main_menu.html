@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<!-- start:  main-menu -->
+<ul class="main-menu">
+	{% for menu_item in menu_items %}
+		<li class="main-menu__item{% if selected == menu_item %} main-menu__item_selected{% endif %}">
+			<a href="{% pageurl menu_item %}">{{ menu_item.title }}</a>
+		</li>
+	{% endfor %}
+</ul>
+<!-- end:  main-menu -->

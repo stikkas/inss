@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="side-panel">
+	<span class="side-panel__label">{% trans 'Темы' %}</span>
+    <div class="b-tags-cloud">
+	    {% for tag in tag_list %}
+		    <span class="b-tags-cloud__link b-tags-cloud__link_size{{ tag.weight|floatformat:'0' }}">
+			    <a href="#">{{ tag.name }}</a>
+		    </span>
+	    {% endfor %}
+    </div>
+</div>

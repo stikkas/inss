@@ -1,0 +1,6 @@
+syntax: glob
+*.pyc
+insoft.egg-info/
+media/
+static/CACHE/
+database.sqlite

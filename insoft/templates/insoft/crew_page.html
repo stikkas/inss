@@ -1,0 +1,27 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags wagtailimages_tags insoft_tags %}
+
+{% block side_panels %}
+	{% left_menu build_from=self.get_parent current_page=self title=self.title %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+		<div class="b-workspace__label">
+			<span>{% if self.headline %}{{ self.headline }}{% else %}{{ self.title }}{% endif %}</span>
+		</div>
+{% endblock %}
+
+{% block workspace_body %}
+	<ul class="crew">
+		{% for crewman in self.members %}
+			<li>
+			    <div class="crew__profile">
+				    {% image crewman.face fill-150x130 %}
+				    <span class="crew__profile-name">{{ crewman.name }}</span>
+				    <span class="crew__profile-position">{{ crewman.position }}</span>
+			    </div>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

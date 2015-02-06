@@ -1,0 +1,20 @@
+{% load i18n wagtailroutablepage_tags %}
+
+<div class="side-panel">
+	<span class="side-panel__label">{% trans 'Архив' %}</span>
+	<div class="b-press-archive" data-collapse="accordion">
+	{% regroup dates by year as dates_grouped_by_year %}
+	{% for group in dates_grouped_by_year %}
+		<div class="b-press-archive__year{% if group.grouper == selected_date.year %} open{% endif %}">
+			{{ group.grouper }}
+		</div>
+		<ul>
+			{% for date in group.list %}
+				<li>
+				    <a href="{% routablepageurl self "archive" date.year date.month %}">{{ date|date:"F" }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+	</div>
+</div>

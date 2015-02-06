@@ -1,0 +1,58 @@
+{% extends 'insoft/base.html' %}
+{% load static insoft_tags %}
+
+{% block side_panels %}
+	{% news_widget news=2 cnews=3 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>ИНСОФТ Инженерно-Внедренческий Центр</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	<div class="b-workspace__super">
+		<h1>
+			Разработка и сопровождение программного обеспечения, внедрение и обслуживание распределенных
+			вычислительных систем.
+		</h1>
+		<p>
+			Первой разработкой ЗАО ИВЦ ИНСОФТ явилось создание в 1990 – 1993 годах многоуровневой
+			автоматизированной интегрированной системы управления деятельностью органов ЗАГС Москвы – МАИС
+			ЗАГС Москвы. Разработка, а затем и внедрение системы на объектах Москвы и в ряде регионов
+			Российской Федерации позволили компании приобрести большой практический опыт, вождении других
+			автоматых систем.
+		</p>
+	</div>
+
+	<!-- start: b-services-showcase -->
+	<span class="b-services-showcase__label">Направления деятельности:</span>
+	<div class="b-services-showcase">
+		<div class="b-services-showcase__left-block">
+			<div class="b-services-showcase__item b-services-showcase__item_red-db">
+				<strong>Разработка</strong> и сопровождение программного обеспечения
+			</div>
+			<div class="b-services-showcase__separator"></div>
+			<div class="b-services-showcase__item b-services-showcase__item_blue-network">
+				<strong>Проектирование распределенных</strong> вычислительных систем
+			</div>
+		</div>
+		<div class="b-services-showcase__right-block">
+			<div class="b-services-showcase__item b-services-showcase__item_red-chart">
+				<strong>Внедрение и обслуживание</strong> распределенных вычислительных систем
+			</div>
+			<div class="b-services-showcase__separator"></div>
+			<div class="b-services-showcase__item b-services-showcase__item_blue-db">
+				<strong>Разработка</strong> и сопровождение программного обеспечения
+			</div>
+		</div>
+	</div>
+	<!-- end: b-services-showcase -->
+{% endblock %}
+
+{% block workspace_foot %}
+	<div class="b-workspace__bottom-link">
+		<a href="#">Все направления деятельности</a>
+	</div>
+{% endblock %}
