@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block workspace_body %}
-	{{ self.description|richtext }}
+	{{ self.preface|richtext }}
 	<div class="chronologies">
 	    {% for record in self.records.all %}
 		    <div class="chronologies__item">

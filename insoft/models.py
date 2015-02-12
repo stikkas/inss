@@ -201,7 +201,7 @@ class PressEntryPage(Page):
 
 PressEntryPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('date'),
+    FieldPanel('release_date'),
     FieldPanel('body', classname='full'),
     ImageChooserPanel('feed_image'),
     FieldPanel('tags')
