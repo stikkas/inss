@@ -1,58 +1,60 @@
 {% load static i18n wagtailcore_tags wagtailimages_tags %}
 
-<div class="side-panel">
-	<span class="side-panel__label">{% trans 'Новости компании' %}</span>
+{% if news_entries or cnews_entries %}
+	<div class="side-panel">
+		<span class="side-panel__label">{% trans 'Новости компании' %}</span>
 
-	<!-- start: b-news-ads -->
-	<div class="b-news-ads">
-		{% for entry in news_entries %}
-			<div class="b-news-ads__item">
-				<div class="b-news-ads__item-img">
-					{% image entry.feed_image fill-70x70 %}
+		<!-- start: b-news-ads -->
+		<div class="b-news-ads">
+			{% for entry in news_entries %}
+				<div class="b-news-ads__item">
+					<div class="b-news-ads__item-img">
+						{% image entry.feed_image fill-70x70 %}
+					</div>
+					<div class="b-news-ads__item-desc">
+						<a href="{% pageurl entry %}">{{ entry.title }}</a>
+						<span class="b-news-ads__item-desc-date">{{ entry.release_date }}</span>
+					</div>
 				</div>
-				<div class="b-news-ads__item-desc">
-					<a href="{% pageurl entry %}">{{ entry.title }}</a>
-					<span class="b-news-ads__item-desc-date">{{ entry.release_date }}</span>
+			{% endfor %}
+		</div>
+		<!-- end: b-news-ads -->
+
+		<!-- start: b-cnews-ads -->
+		{% if cnews_entries %}
+			<div class="b-cnews-ads">
+				<div class="b-cnews-ads__item">
+					<div class="b-cnews-ads__item-img">
+						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
+					</div>
+					<div class="b-cnews-ads__item-desc">
+						<a href="#">Mail.ru переходит на краудсорсинговые карты</a>
+					</div>
+				</div>
+				<div class="b-cnews-ads__item">
+					<div class="b-cnews-ads__item-img">
+						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
+					</div>
+					<div class="b-cnews-ads__item-desc">
+						<a href="#">В России начались продажи смартфонов на Firefox OS</a>
+					</div>
+				</div>
+				<div class="b-cnews-ads__item">
+					<div class="b-cnews-ads__item-img">
+						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
+					</div>
+					<div class="b-cnews-ads__item-desc">
+						<a href="#">В России начались продажи</a>
+					</div>
 				</div>
 			</div>
-		{% endfor %}
+		{% endif %}
+		<!-- end: b-cnews-ads -->
+
+		{% if news_page %}
+			<div class="side-panel__bottom-link">
+				<a href="{% pageurl news_page %}">Архив Новостей</a>
+			</div>
+		{% endif %}
 	</div>
-	<!-- end: b-news-ads -->
-
-	<!-- start: b-cnews-ads -->
-    {% if cnews_entries %}
-	    <div class="b-cnews-ads">
-		    <div class="b-cnews-ads__item">
-			    <div class="b-cnews-ads__item-img">
-				    <img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-			    </div>
-			    <div class="b-cnews-ads__item-desc">
-				    <a href="#">Mail.ru переходит на краудсорсинговые карты</a>
-			    </div>
-		    </div>
-		    <div class="b-cnews-ads__item">
-			    <div class="b-cnews-ads__item-img">
-				    <img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-			    </div>
-			    <div class="b-cnews-ads__item-desc">
-				    <a href="#">В России начались продажи смартфонов на Firefox OS</a>
-			    </div>
-		    </div>
-		    <div class="b-cnews-ads__item">
-			    <div class="b-cnews-ads__item-img">
-				    <img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-			    </div>
-			    <div class="b-cnews-ads__item-desc">
-				    <a href="#">В России начались продажи</a>
-			    </div>
-		    </div>
-	    </div>
-    {% endif %}
-	<!-- end: b-cnews-ads -->
-
-    {% if news_page %}
-	    <div class="side-panel__bottom-link">
-		    <a href="{% pageurl news_page %}">Архив Новостей</a>
-	    </div>
-    {% endif %}
-</div>
+{% endif %}

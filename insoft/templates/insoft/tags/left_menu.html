@@ -1,13 +1,14 @@
 {% load wagtailcore_tags %}
 
-<div class="side-panel">
-	<span class="side-panel__label">{{ title }}</span>
-	<ul class="left-menu">
-		{% for menu_item in menu_items %}
-			<li class="left-menu__item{% if selected == menu_item %} left-menu__item_selected{% endif %}">
-				<a href="{% pageurl menu_item %}">{{ menu_item.title }}</a>
-			</li>
-		{% endfor %}
-	</ul>
-</div>
-
+{% if menu_items %}
+	<div class="side-panel">
+		<span class="side-panel__label">{{ title }}</span>
+		<ul class="left-menu">
+			{% for menu_item in menu_items %}
+				<li class="left-menu__item{% if selected == menu_item %} left-menu__item_selected{% endif %}">
+					<a href="{% pageurl menu_item %}">{{ menu_item.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
