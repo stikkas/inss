@@ -7,7 +7,16 @@ TEMPLATE_DEBUG = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 INSTALLED_APPS += ('debug_toolbar',)
 
-DATABASES['default']['NAME'] = 'insoft_develop'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'insoft_develop',
+        'USER': 'insoft',
+        'PASSWORD': 'insoft',
+        'HOST': 'localhost',
+        'CONN_MAX_AGE': 600,
+        }
+}
 
 
 try:
