@@ -17,8 +17,12 @@
 		{% for crewman in self.members %}
 			<li>
 			    <div class="crew__profile">
-				    {% image crewman.face fill-150x130 %}
-				    <span class="crew__profile-name">{{ crewman.name }}</span>
+				    <a href="{% pageurl crewman %}" title="{{ crewman.name }} - Биография">
+				        {% image crewman.face fill-150x130 %}
+				    </a>
+				    <span class="crew__profile-name">
+					    <a href="{% pageurl crewman %}" title="{{ crewman.name }} - Биография">{{ crewman.name }}</a>
+				    </span>
 				    <span class="crew__profile-position">{{ crewman.position }}</span>
 			    </div>
 			</li>

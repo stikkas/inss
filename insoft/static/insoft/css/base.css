@@ -732,13 +732,34 @@ html, body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 .crew__profile-name {
+	margin: 20px 0 15px;
+}
+.crew__profile-name a {
 	font-weight: bold;
 	font-size: 14px;
 	text-decoration: underline;
-	margin: 20px 0 15px;
+	color: #000;
 }
 .crew__profile-position {
 	color: #575757;
 	font-size: 14px;
 }
 /* end: crew */
+
+/* start: crewman */
+.crewman {}
+.crewman__face {
+	float: left;
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+.crewman__name {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.crewman__position {
+	color: #575757;
+	margin-bottom: 40px;
+}
+.crewman__bio {}
+/* end: crewman */

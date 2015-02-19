@@ -1,0 +1,22 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags wagtailimages_tags insoft_tags %}
+
+{% block side_panels %}
+	{% left_menu build_from=self.get_parent.get_parent current_page=self title='Компания ИНСОФТ' %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{{ self.name }}</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	<div class="crewman">
+		{% image self.face fill-250x320 class='crewman__face' %}
+		<h2 class="crewman__name">{{ self.name }}</h2>
+		<div class="crewman__position">{{ self.position }}</div>
+		<div class="crewman__bio">{{ self.bio|richtext }}</div>
+	</div>
+{% endblock %}
