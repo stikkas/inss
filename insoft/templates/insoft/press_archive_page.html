@@ -16,7 +16,7 @@
 	<div class="b-last-press-entries">
 		{% for entry in entries %}
 			<div class="b-press-entry">
-				<div class="b-press-entry__date">{{ entry.date }}</div>
+				<div class="b-press-entry__date">{{ entry.release_date }}</div>
 				<div class="b-press-entry__title">
 					<a href="{% pageurl entry %}">{{ entry.title }}</a>
 				</div>
