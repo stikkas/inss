@@ -1,5 +1,5 @@
 {% extends 'insoft/base.html' %}
-{% load static insoft_tags %}
+{% load static wagtailcore_tags insoft_tags %}
 
 {% block side_panels %}
 	{% news_widget news=2 cnews=3 %}
@@ -7,23 +7,13 @@
 
 {% block workspace_head %}
 	<div class="b-workspace__label">
-		<span>ИНСОФТ Инженерно-Внедренческий Центр</span>
+		<span>{{ self.headline }}</span>
 	</div>
 {% endblock %}
 
 {% block workspace_body %}
 	<div class="b-workspace__super">
-		<h1>
-			Разработка и сопровождение программного обеспечения, внедрение и обслуживание распределенных
-			вычислительных систем.
-		</h1>
-		<p>
-			Первой разработкой ЗАО ИВЦ ИНСОФТ явилось создание в 1990 – 1993 годах многоуровневой
-			автоматизированной интегрированной системы управления деятельностью органов ЗАГС Москвы – МАИС
-			ЗАГС Москвы. Разработка, а затем и внедрение системы на объектах Москвы и в ряде регионов
-			Российской Федерации позволили компании приобрести большой практический опыт, вождении других
-			автоматых систем.
-		</p>
+	    {{ self.content|richtext }}
 	</div>
 
 	<!-- start: b-services-showcase -->

@@ -24,9 +24,18 @@ LAST_ENTRIES_ON_PAGE = 20
 
 # Start page
 class StartPage(Page):
+    headline = models.CharField(_('Headline'), max_length=HEADLINE_LEN, blank=True, null=True)
+    content = RichTextField(_('Content'), blank=True, null=True)
+
     class Meta:
         db_table = 'insoft_start_page'
         verbose_name = _('Start page')
+
+StartPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('headline', classname='full title'),
+    FieldPanel('content', classname='full'),
+]
 
 
 # Simple page
