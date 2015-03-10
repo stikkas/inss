@@ -135,6 +135,57 @@ CrewPage.content_panels = [
 ]
 
 
+# Official Documents
+class OfficialDocumentsPage(Page):
+    subpage_types = ['insoft.DocumentsCategoryPage']
+
+    class Meta:
+        db_table = 'insoft_official_documents_page'
+        verbose_name = _('Official documents')
+
+
+class DocumentsCategoryPage(Page):
+    subpage_types = ['insoft.DocumentPage']
+
+    class Meta:
+        db_table = 'insoft_documents_category_page'
+        verbose_name = _('Documents category')
+
+
+class DocumentScan(Orderable):
+    page = ParentalKey('insoft.DocumentPage', related_name='scans')
+    scan = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Scan'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    panels = [
+        ImageChooserPanel('scan')
+    ]
+
+    class Meta:
+        db_table = 'insoft_document_scan'
+
+
+class DocumentPage(Page):
+    subpage_types = []
+    description = models.CharField(_('Description'), max_length=255, blank=True, null=True)
+
+    class Meta:
+        db_table = 'insoft_document_page'
+        verbose_name = _('Document')
+
+DocumentPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('description', classname='full'),
+    InlinePanel(DocumentPage, 'scans', label=_('Scans'))
+]
+
+
 # Press
 class PressPage(RoutablePageMixin, Page):
     subpage_types = ['insoft.PressEntryPage']
