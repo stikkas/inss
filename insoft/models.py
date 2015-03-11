@@ -15,7 +15,9 @@ from wagtail.wagtailsearch import index
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
-from taggit.models import Tag, TaggedItemBase
+from taggit.models import TaggedItemBase
+
+from insoft import maps
 
 
 HEADLINE_LEN = 100
@@ -183,6 +185,33 @@ DocumentPage.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('description', classname='full'),
     InlinePanel(DocumentPage, 'scans', label=_('Scans'))
+]
+
+
+# Customers
+class CustomersPage(Page):
+    subpage_types = ['insoft.CustomerPage']
+
+    class Meta:
+        db_table = 'insoft_customers_page'
+        verbose_name = _('Customers page')
+
+
+class CustomerPage(Page):
+    headline = models.CharField(_('Headline'), max_length=HEADLINE_LEN, blank=True, null=True)
+    location_on_map = models.CharField(_('Location on map'), max_length=10,
+                                       choices=maps.choices(maps.RUSSIA))
+    content = RichTextField(_('Content'), blank=True, null=True)
+
+    class Meta:
+        db_table = 'insoft_customer_page'
+        verbose_name = _('Customer page')
+
+CustomerPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('headline', classname='full title'),
+    FieldPanel('location_on_map', classname='full title'),
+    FieldPanel('content', classname='full'),
 ]
 
 
