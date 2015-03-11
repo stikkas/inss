@@ -9,7 +9,8 @@ from django.shortcuts import render
 
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
+                                                PageChooserPanel)
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin
@@ -212,6 +213,76 @@ CustomerPage.content_panels = [
     FieldPanel('headline', classname='full title'),
     FieldPanel('location_on_map', classname='full title'),
     FieldPanel('content', classname='full'),
+]
+
+
+# Products
+class ProductsPage(Page):
+    subpage_types = ['insoft.ProductCategoryPage']
+
+    content = RichTextField(_('Content'), blank=True, null=True)
+
+    class Meta:
+        db_table = 'insoft_products_page'
+        verbose_name = _('Products page')
+
+ProductsPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('content', classname='full'),
+]
+
+
+class ProductCategoryPage(Page):
+    subpage_types = ['insoft.ProductSubCategoryPage']
+
+    class Meta:
+        db_table = 'insoft_product_category_page'
+        verbose_name = _('Product category page')
+
+
+class ProductSubCategoryPage(Page):
+    subpage_types = ['insoft.ProductPage', 'insoft.ProductLinkPage']
+
+    class Meta:
+        db_table = 'insoft_product_subcategory_page'
+        verbose_name = _('Product subcategory page')
+
+
+class ProductPage(Page):
+    subpage_types = []
+
+    content = RichTextField(_('Content'), blank=True, null=True)
+
+    class Meta:
+        db_table = 'insoft_product_page'
+        verbose_name = _('Product page')
+
+ProductPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('content', classname='full'),
+]
+
+
+class ProductLinkPage(Page):
+    link = models.ForeignKey(
+        'wagtailcore.Page',
+        verbose_name=_('Link'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def content(self):
+        return self.link.content
+
+    class Meta:
+        db_table = 'insoft_product_link_page'
+
+ProductLinkPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    PageChooserPanel('link', 'insoft.ProductPage')
 ]
 
 
