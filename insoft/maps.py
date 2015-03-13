@@ -19,10 +19,10 @@ def _load_map(map_name):
     finder = AppDirectoriesFinder(app_names=['insoft'])
     map_file = finder.find('insoft/maps/%s.json' % map_name)
     with open(map_file) as f:
-        data = json.loads(f.read())['pathes']
-        setattr(_cache, map_name,
-                tuple([Location(key, val['name'])
-                       for key, val in data.iteritems()]))
+        data = json.loads(f.read())
+        paths = sorted(data['pathes'].iteritems(), key=lambda l: l[1]['name'])
+        locations = tuple([Location(key, val['name']) for key, val in paths])
+        setattr(_cache, map_name, locations)
 
 
 def get_map(map_name):
