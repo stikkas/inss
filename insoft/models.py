@@ -234,7 +234,8 @@ ProductsPage.content_panels = [
 
 class ProductCategoryPage(Page):
     subpage_types = ['insoft.ProductSubCategoryPage',
-                     'insoft.ProductPage']
+                     'insoft.ProductPage',
+                     'insoft.ProductLinkPage']
 
     class Meta:
         db_table = 'insoft_product_category_page'
