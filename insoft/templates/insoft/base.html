@@ -8,11 +8,13 @@
 
 	{% compress css %}
 		<link rel="stylesheet" href="{% static 'insoft/css/base.css' %}">
+		<link rel="stylesheet" href="{% static 'insoft/css/jqvmap.css' %}">
 	{% endcompress %}
 
     {% compress js %}
 	    <script src="{% static 'insoft/js/vendor/jquery-1.9.1.js' %}"></script>
 	    <script src="{% static 'insoft/js/vendor/jquery.collapse-1.1.0.js' %}"></script>
+	    <script src="{% static 'insoft/js/vendor/jquery.vmap-1.0.min.js' %}"></script>
 	    <script src="{% static 'insoft/js/adjust_height.js' %}"></script>
     {% endcompress %}
 </head>
@@ -61,5 +63,6 @@
 	    </div>
     </div>
 
+{% compress js %}{% block js %}{% endblock %}{% endcompress %}
 </body>
 </html>

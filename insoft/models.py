@@ -190,8 +190,32 @@ DocumentPage.content_panels = [
 
 
 # Customers
-class CustomersPage(Page):
+class CustomersPage(RoutablePageMixin, Page):
     subpage_types = ['insoft.CustomerPage']
+    subpage_urls = (
+        url(r'^$', 'map', name='customers_map'),
+        url(r'^location/(?P<location_code>[a-z-]{2,10})/$',
+            'customers_on_location', name='customers_on_location'),
+    )
+
+    def map(self, request):
+        return render(request, self.template, {'self': self})
+
+    def customers_on_location(self, request, location_code):
+        location = maps.get_location(maps.RUSSIA, location_code)
+        if not location:
+            raise Http404
+
+        customers = CustomerPage.objects.filter(
+            live=True,
+            location_on_map=location.code
+        ).defer('content')
+
+        return render(request, 'insoft/customers_on_location_page.html', {
+            'customers': customers,
+            'self': self,
+            'location': location
+        })
 
     class Meta:
         db_table = 'insoft_customers_page'

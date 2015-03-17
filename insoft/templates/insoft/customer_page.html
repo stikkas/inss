@@ -1,0 +1,18 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags insoft_tags %}
+
+
+{% block side_panels %}
+	{% left_menu build_from=self.get_parent.get_parent current_page=self title='Формула успеха' %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{% if self.headline %}{{ self.headline }}{% else %}{{ self.title }}{% endif %}</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	{{ self.content|richtext }}
+{% endblock %}

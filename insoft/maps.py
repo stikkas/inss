@@ -31,6 +31,13 @@ def get_map(map_name):
     return getattr(_cache, map_name)
 
 
+def get_location(map_name, code):
+    locations = get_map(map_name)
+    for l in locations:
+        if l.code.upper() == code.upper():
+            return l
+
+
 def choices(map_name):
     for l in get_map(map_name):
         yield (l.code, l.name,)

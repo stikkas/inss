@@ -1,0 +1,44 @@
+{% extends 'insoft/base.html' %}
+{% load static wagtailroutablepage_tags insoft_tags %}
+
+{% block side_panels %}
+	{% left_menu build_from=self.get_parent current_page=self title='Формула успеха' %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{{ self.title }}</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	<div id="russia_map" style="width: 810px; height: 500px;"></div>
+{% endblock %}
+
+{% block js %}
+	<script>
+		$(document).ready(function() {
+			$.getJSON('{% static "insoft/maps/russia.json" %}', function(map) {
+				jQuery.fn.vectorMap('addMap', 'russia_ru', map);
+				$('#russia_map').vectorMap({
+					map: 'russia_ru',
+					backgroundColor: 'transparent',
+					borderWidth: 2,
+					borderColor: '#ffffff',
+					color: '#bec9dc',
+					hoverOpacity: 0,
+					hoverColor: '#7191b6',
+					selectedColor: '#7191b6',
+					enableZoom: false,
+					showTooltip: true,
+					normalizeFunction: 'polynomial',
+					onRegionClick: function(element, code, region) {
+						var goto ="{% routablepageurl self 'customers_on_location' 'code' %}";
+						window.location.href =  goto.replace('code', code).toLowerCase();
+					}
+				});
+			});
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags insoft_tags %}
+
+{% block side_panels %}
+	{% left_menu build_from=self.get_parent current_page=self title='Формула успеха' %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{{ location.name }}</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	{% if customers %}
+		<ul>
+			{% for customer in customers %}
+				<li><a href="{% pageurl customer %}">{{ customer.title }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		Заказчики в данном регионе отсутствуют
+	{% endif %}
+{% endblock %}
