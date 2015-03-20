@@ -29,6 +29,7 @@
 
         };
         window.adjustHeight();
+        window.adjustHeight();
         $(window).resize(function(){ window.adjustHeight() });
     });
 })(window.jQuery);
