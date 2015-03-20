@@ -85,7 +85,7 @@ html, body {
 {
 	text-align: left;
 	font-weight: bold;
-	font-size: 11px;
+	font-size: 12px;
 	line-height: 18px;
 	font-family: Helvetica, Arial, sans-serif;
 	display: block;
@@ -105,10 +105,10 @@ html, body {
 	line-height: 15px;
 }
 .location__phone-code {
-	font-size: 11px;
+	font-size: 13px;
 }
 .location__phone-number {
-	font-size: 14px;
+	font-size: 13px;
 }
 /* end: location */
 
