@@ -1,11 +1,6 @@
 {% extends 'insoft/base.html' %}
 {% load i18n wagtailcore_tags insoft_tags %}
 
-{% block side_panels %}
-	{% left_menu build_from=self.get_parent current_page=self title='Компания ИНСОФТ' %}
-	{% press_archive %}
-{% endblock %}
-
 {% block workspace_head %}
 	<div class="b-workspace__label">
 		<span>{{ self.title }} - {% trans 'Архив за' %} {{ selected_date|date:"F Y"|lower }} года</span>

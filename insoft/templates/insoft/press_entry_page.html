@@ -1,10 +1,6 @@
 {% extends 'insoft/base.html' %}
 {% load wagtailcore_tags insoft_tags %}
 
-{% block side_panels %}
-	{% left_menu build_from=self.get_parent.get_parent current_page=self title='Компания ИНСОФТ' %}
-{% endblock %}
-
 {% block workspace_head %}
 	<div class="b-workspace__label_stretch">
 		<span>{{ self.title }}</span>

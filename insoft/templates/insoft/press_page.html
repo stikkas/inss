@@ -2,7 +2,7 @@
 {% load wagtailcore_tags insoft_tags %}
 
 {% block side_panels %}
-	{% left_menu build_from=self.get_parent current_page=self title='Компания ИНСОФТ' %}
+	{% left_menu current_page=self %}
 	{% news_tags_cloud %}
 	{% press_archive %}
 {% endblock %}

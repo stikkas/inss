@@ -28,7 +28,10 @@
 	    <div class="layout-base__body">
 		    <div class="content">
 			    <div class="content__side-panel">
-				    {% block side_panels %}{% endblock %}
+				    {% block side_panels %}
+					    {% left_menu current_page=self %}
+					    {% news_widget cnews=0 %}
+				    {% endblock %}
 			    </div>
 			    <div class="content__workspace">
 				    {% block workspace %}

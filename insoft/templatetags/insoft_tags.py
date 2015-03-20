@@ -31,8 +31,13 @@ def main_menu(context, current_page):
 
 
 @register.inclusion_tag('insoft/tags/left_menu.html', takes_context=True)
-def left_menu(context, build_from, current_page, title=None):
-    menu_items = build_from.get_children().filter(
+def left_menu(context, current_page, title=None):
+    if current_page.get_depth() > 3:
+        menu_root = current_page.get_ancestors().get(depth=3)
+    else:
+        menu_root = current_page
+
+    menu_items = menu_root.get_children().filter(
         live=True,
         show_in_menus=True
     )
@@ -43,7 +48,7 @@ def left_menu(context, build_from, current_page, title=None):
             selected = menu_item
 
     return {
-        'title': title or build_from.title,
+        'title': title or menu_root.title,
         'menu_items': menu_items,
         'selected': selected,
         'request': context['request']
