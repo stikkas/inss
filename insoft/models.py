@@ -70,6 +70,7 @@ class ChronologyRecord(Orderable):
 
     class Meta:
         db_table = 'insoft_chronology_record'
+        ordering = ['sort_order']
 
 
 class ChronologyPage(Page):
@@ -172,6 +173,7 @@ class DocumentScan(Orderable):
 
     class Meta:
         db_table = 'insoft_document_scan'
+        ordering = ['sort_order']
 
 
 class DocumentPage(Page):
@@ -407,6 +409,7 @@ class ContactsOffice(Orderable):
 
     class Meta:
         db_table = 'insoft_contacts_office'
+        ordering = ['sort_order']
 
 
 class ContactsRequisite(Orderable):
@@ -421,6 +424,7 @@ class ContactsRequisite(Orderable):
 
     class Meta:
         db_table = 'insoft_contacts_requisite'
+        ordering = ['sort_order']
 
 
 class ContactsPage(Page):
