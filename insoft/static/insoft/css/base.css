@@ -709,7 +709,9 @@ html, body {
 .rich-text {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
-	line-height: 20px;
+	line-height: 24px;
+}.rich-text a{
+	color: #90aabc;
 }
 /* end: rich-text */
 
@@ -763,3 +765,43 @@ html, body {
 }
 .crewman__bio {}
 /* end: crewman */
+
+
+/* start: offices */
+.offices .clear {
+	clear: both;
+}
+.office__location {
+	padding: 20px 0;
+	border-top: 1px solid #ddd;
+}
+.office__info {
+	float: left;
+	width: 200px;
+}
+.office__map {
+	float: right;
+	width: 600px;
+}
+/* end: offices */
+
+/* start: requisites */
+.requisites {
+	padding: 15px 5px;
+	font-family: Helvetica Arial sans-serif;
+	font-size: 14px;
+	color: #303030;
+	line-height: 22px;
+}
+.requisites .clear {
+	clear: both;
+}
+.requisite__name {
+	width: 70px;
+	float: left;
+}
+.requisite__value {
+	width: 178px;
+	float: right;
+}
+/* end: requisites */

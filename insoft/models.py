@@ -392,3 +392,47 @@ PressEntryPage.content_panels = [
     ImageChooserPanel('feed_image'),
     FieldPanel('tags')
 ]
+
+
+# Contacts
+class ContactsOffice(Orderable):
+    page = ParentalKey('insoft.ContactsPage', related_name='offices')
+    map = models.CharField(_('Map'), max_length=1000)
+    info = RichTextField(_('Info'))
+
+    panels = [
+        FieldPanel('map', classname='full'),
+        FieldPanel('info', classname='full')
+    ]
+
+    class Meta:
+        db_table = 'insoft_contacts_office'
+
+
+class ContactsRequisite(Orderable):
+    page = ParentalKey('insoft.ContactsPage', related_name='requisites')
+    name = models.CharField(_('Name'), max_length=20)
+    value = models.CharField(_('Value'), max_length=255)
+
+    panels = [
+        FieldPanel('name', classname='full'),
+        FieldPanel('value', classname='full')
+    ]
+
+    class Meta:
+        db_table = 'insoft_contacts_requisite'
+
+
+class ContactsPage(Page):
+    preface = RichTextField(_('Preface'), null=True, blank=True)
+
+    class Meta:
+        db_table = 'insoft_contacts_page'
+        verbose_name = _('Contacts page')
+
+ContactsPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('preface', classname='full'),
+    InlinePanel(ContactsPage, 'offices', label=_('Offices')),
+    InlinePanel(ContactsPage, 'requisites', label=_('Requisites'))
+]

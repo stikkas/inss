@@ -1,0 +1,39 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags insoft_tags %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{% if self.headline %}{{ self.headline }}{% else %}{{ self.title }}{% endif %}</span>
+	</div>
+{% endblock %}
+
+{% block side_panels %}
+	<div class="side-panel">
+		<span class="side-panel__label">Реквизиты</span>
+		<div class="requisites">
+			{% for requisite in self.requisites.all %}
+				<div class="requisite__name">{{ requisite.name }}</div>
+				<div class="requisite__value">{{ requisite.value }}</div>
+				<div class="clear"></div>
+			{% endfor %}
+		</div>
+	</div>
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_body %}
+	{{ self.preface|richtext }}
+	<div class="offices">
+		{% for office in self.offices.all %}
+			<div class="office__location">
+				<div class="office__info">
+					{{ office.info|richtext }}
+				</div>
+				<div class="office__map">
+					{% autoescape off %} {{ office.map }} {% endautoescape %}
+				</div>
+				<div class="clear"></div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
