@@ -1,0 +1,21 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailimages_tags %}
+
+{% block workspace_body %}
+	{% for category in self.categories %}
+		<div class="b-workspace__label">
+			<span>{{ category.title }}</span>
+		</div>
+
+		<ul class="documents">
+			{% for doc in category.documents %}
+				<li>
+					<div class="document__scan">
+						{% image doc.scans.first.scan fill-150x220 %}
+						<span class="document__description">{{ doc.description }}</span>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+{% endblock %}

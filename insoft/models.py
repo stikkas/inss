@@ -145,6 +145,10 @@ CrewPage.content_panels = [
 class OfficialDocumentsPage(Page):
     subpage_types = ['insoft.DocumentsCategoryPage']
 
+    @property
+    def categories(self):
+        return DocumentsCategoryPage.objects.child_of(self)
+
     class Meta:
         db_table = 'insoft_official_documents_page'
         verbose_name = _('Official documents')
@@ -152,6 +156,10 @@ class OfficialDocumentsPage(Page):
 
 class DocumentsCategoryPage(Page):
     subpage_types = ['insoft.DocumentPage']
+
+    @property
+    def documents(self):
+        return DocumentPage.objects.child_of(self).prefetch_related('scans__scan')
 
     class Meta:
         db_table = 'insoft_documents_category_page'
