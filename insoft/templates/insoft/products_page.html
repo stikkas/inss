@@ -1,0 +1,17 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags insoft_tags %}
+
+{% block side_panels %}
+	{% solutions_menu current_page=self %}
+	{% news_widget cnews=0 %}
+{% endblock %}
+
+{% block workspace_head %}
+	<div class="b-workspace__label">
+		<span>{{ self.title }}</span>
+	</div>
+{% endblock %}
+
+{% block workspace_body %}
+	{{ self.content|richtext }}
+{% endblock %}

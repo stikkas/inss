@@ -1,9 +1,14 @@
 import itertools
 from django import template
-from django.db.models import Count
+from django.contrib.contenttypes.models import ContentType
+from django.db.models import Count, Q
 from taggit.models import Tag
 
-from insoft.models import PressPage, PressEntryPage, PressEntryTag
+from insoft.models import (
+    PressPage, PressEntryPage, PressEntryTag,
+    ProductsPage, ProductCategoryPage, ProductSubCategoryPage,
+    ProductPage, ProductLinkPage
+)
 
 
 register = template.Library()
@@ -110,5 +115,44 @@ def news_tags_cloud(context):
 
     return {
         'tag_list': tag_list,
+        'request': context['request']
+    }
+
+
+@register.inclusion_tag('insoft/tags/solutions_menu.html', takes_context=True)
+def solutions_menu(context, current_page):
+    if isinstance(current_page, ProductsPage):
+        root_page = current_page
+    else:
+        root_page = current_page.get_ancestors().type(ProductsPage)[0]
+
+    cat_ct = ContentType.objects.get_for_model(ProductCategoryPage)
+    subcat_ct = ContentType.objects.get_for_model(ProductSubCategoryPage)
+
+    pages = root_page.get_descendants().filter(
+        Q(content_type=cat_ct) | Q(content_type=subcat_ct)
+    ).filter(
+        live=True,
+        show_in_menus=True
+    ).order_by('path')
+
+    menu_items = []
+    for page in pages:
+        if page.content_type_id == cat_ct.id:
+            page.submenu_items = []
+            menu_items.append(page)
+        if page.content_type_id == subcat_ct.id:
+            menu_items[-1].submenu_items.append(page)
+
+    if current_page.__class__ in [ProductPage, ProductLinkPage]:
+        selected = current_page.get_parent()
+    else:
+        selected = current_page
+
+    return {
+        'menu_items': menu_items,
+        'self': current_page,
+        'selected': selected,
+        'root_page': root_page,
         'request': context['request']
     }

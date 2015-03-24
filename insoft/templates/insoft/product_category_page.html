@@ -1,0 +1,12 @@
+{% extends 'insoft/products_page.html' %}
+{% load wagtailcore_tags %}
+
+{% block workspace_body %}
+	<ul class="product-list">
+		{% for product in self.products %}
+			<li class="product-list__item">
+				<a href="{% pageurl product %}">{{ product.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

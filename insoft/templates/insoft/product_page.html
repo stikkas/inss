@@ -1,0 +1,6 @@
+{% extends 'insoft/products_page.html' %}
+{% load wagtailcore_tags %}
+
+{% block workspace_body %}
+	{{ self.content|richtext }}
+{% endblock %}

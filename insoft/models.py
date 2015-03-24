@@ -2,7 +2,9 @@ import datetime
 import time
 
 from django.conf.urls import url
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import Q
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
@@ -263,6 +265,10 @@ class ProductCategoryPage(Page):
                      'insoft.ProductPage',
                      'insoft.ProductLinkPage']
 
+    @property
+    def products(self):
+        return self.get_children().not_type(ProductSubCategoryPage)
+
     class Meta:
         db_table = 'insoft_product_category_page'
         verbose_name = _('Product category page')
@@ -270,6 +276,10 @@ class ProductCategoryPage(Page):
 
 class ProductSubCategoryPage(Page):
     subpage_types = ['insoft.ProductPage', 'insoft.ProductLinkPage']
+
+    @property
+    def products(self):
+        return self.get_children()
 
     class Meta:
         db_table = 'insoft_product_subcategory_page'
@@ -303,7 +313,7 @@ class ProductLinkPage(Page):
 
     @property
     def content(self):
-        return self.link.content
+        return ProductPage.objects.get(id=self.link.id).content
 
     class Meta:
         db_table = 'insoft_product_link_page'

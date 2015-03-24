@@ -1,0 +1,26 @@
+{% load wagtailcore_tags %}
+
+<div class="side-panel">
+	<span class="side-panel__label">{{ root_page.title }}</span>
+
+	<ul class="solutions-menu">
+	{% for menu_item in menu_items %}
+		<li>
+			<a href="{% pageurl menu_item %}"{% if selected.id == menu_item.id %} class="selected"{% endif %}>
+				{{ menu_item.title }}
+			</a>
+			{% if menu_item.submenu_items %}
+				<ul class="solutions-menu__submenu">
+					{% for submenu_item in menu_item.submenu_items %}
+						<li>
+							<a href="{% pageurl submenu_item %}"{% if selected.id == submenu_item.id %} class="selected"{% endif %}>
+								{{ submenu_item.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+</div>
