@@ -710,8 +710,21 @@ html, body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 24px;
-}.rich-text a{
+	padding: 0 15px 0 2px;
+}
+.rich-text a{
 	color: #90aabc;
+}
+.rich-text .richtext-image {
+	margin-top: 3px
+}
+.rich-text .right {
+	float: right;
+	margin-left: 16px;
+}
+.rich-text .left {
+	float: left;
+	margin-right: 16px;
 }
 /* end: rich-text */
 
