@@ -1,0 +1,72 @@
+diff --git a/setup.py b/setup.py
+index a8c622c..d7152df 100644
+--- a/setup.py
++++ b/setup.py
+@@ -34,7 +34,7 @@ install_requires = [
+     "django-libsass>=0.2",
+     "django-modelcluster>=0.4",
+     "django-taggit==0.12.2",
+-    "django-treebeard==2.0",
++    "django-treebeard==3.0",
+     "Pillow>=2.6.1",
+     "beautifulsoup4>=4.3.2",
+     "html5lib==0.999",
+diff --git a/wagtail/project_template/requirements.txt b/wagtail/project_template/requirements.txt
+index 6ad00ab..d8cc933 100644
+--- a/wagtail/project_template/requirements.txt
++++ b/wagtail/project_template/requirements.txt
+@@ -1,6 +1,6 @@
+ # Minimal requirements
+ Django>=1.7,<1.8
+-wagtail==0.8.4
++wagtail==0.8.4-insoft.1
+ 
+ # Recommended components (require additional setup):
+ # psycopg2==2.5.2
+diff --git a/wagtail/wagtailcore/__init__.py b/wagtail/wagtailcore/__init__.py
+index c3c72f7..ad40449 100644
+--- a/wagtail/wagtailcore/__init__.py
++++ b/wagtail/wagtailcore/__init__.py
+@@ -1,2 +1,2 @@
+-__version__ = '0.8.4'
++__version__ = '0.8.4-insoft.1'
+ default_app_config = 'wagtail.wagtailcore.apps.WagtailCoreAppConfig'
+diff --git a/wagtail/wagtailcore/models.py b/wagtail/wagtailcore/models.py
+index 50a3269..6421a76 100644
+--- a/wagtail/wagtailcore/models.py
++++ b/wagtail/wagtailcore/models.py
+@@ -267,7 +267,7 @@ class PageBase(models.base.ModelBase):
+ @python_2_unicode_compatible
+ class Page(six.with_metaclass(PageBase, MP_Node, ClusterableModel, index.Indexed)):
+     title = models.CharField(max_length=255, help_text=_("The page title as you'd like it to be seen by the public"))
+-    slug = models.SlugField(help_text=_("The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/"))
++    slug = models.SlugField(max_length=120, help_text=_("The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/"))
+     # TODO: enforce uniqueness on slug field per parent (will have to be done at the Django
+     # level rather than db, since there is no explicit parent relation in the db)
+     content_type = models.ForeignKey('contenttypes.ContentType', related_name='pages')
+diff --git a/wagtail/wagtailcore/migrations/0011_equate_slug_length_with_title_length.py b/wagtail/wagtailcore/migrations/0011_equate_slug_length_with_title_length.py
+new file mode 100644
+index 0000000..71d7283
+--- /dev/null
++++ b/wagtail/wagtailcore/migrations/0011_equate_slug_length_with_title_length.py
+@@ -0,0 +1,20 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import models, migrations
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('wagtailcore', '0010_change_page_owner_to_null_on_delete'),
++    ]
++
++    operations = [
++        migrations.AlterField(
++            model_name='page',
++            name='slug',
++            field=models.SlugField(max_length=120, help_text='The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/'),
++            preserve_default=True,
++        ),
++    ]
