@@ -15,7 +15,7 @@ DATABASES = {
         'PASSWORD': 'insoft',
         'HOST': 'localhost',
         'CONN_MAX_AGE': 600,
-        }
+    }
 }
 
 
