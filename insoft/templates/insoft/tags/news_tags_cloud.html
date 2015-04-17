@@ -5,7 +5,7 @@
     <div class="b-tags-cloud">
 	    {% for tag in tag_list %}
 		    <span class="b-tags-cloud__link b-tags-cloud__link_size{{ tag.weight|floatformat:'0' }}">
-			    <a href="#">{{ tag.name }}</a>
+			    <a href="tag/{{ tag.id }}">{{ tag.name }}</a>
 		    </span>
 	    {% endfor %}
     </div>

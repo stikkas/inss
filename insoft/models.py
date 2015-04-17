@@ -18,7 +18,7 @@ from wagtail.wagtailsearch import index
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
-from taggit.models import TaggedItemBase
+from taggit.models import TaggedItemBase, Tag
 
 from insoft import maps
 
@@ -338,6 +338,7 @@ class PressPage(RoutablePageMixin, Page):
     subpage_urls = (
         url(r'^$', 'latest', name='latest'),
         url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', 'archive', name='archive'),
+        url(r'^tag/(?P<tag>[0-9]+)/$', 'show_tag', name='show-tag'),
     )
 
     @property
@@ -368,6 +369,17 @@ class PressPage(RoutablePageMixin, Page):
             'entries': entries,
             'self': self,
             'selected_date': selected_date
+        })
+
+    def show_tag(self, request, tag):
+        entries = PressEntryTag.objects.filter(tag_id=tag)
+        if not entries.exists():
+            raise Http404
+
+        return render(request, 'insoft/press_tag_page.html', {
+            'entries': [it.content_object for it in entries],
+            'self': self,
+            'tag_name': Tag.objects.get(id=tag).name
         })
 
     class Meta:

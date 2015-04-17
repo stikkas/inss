@@ -1,0 +1,21 @@
+{% extends 'insoft/base.html' %}
+{% load i18n wagtailcore_tags insoft_tags %}
+
+{% block workspace_head %}
+<div class="b-workspace__label">
+    <span>{{ self.title }} - {{ tag_name }}</span>
+</div>
+{% endblock %}
+
+{% block workspace_body %}
+<div class="b-last-press-entries">
+    {% for entry in entries %}
+    <div class="b-press-entry">
+        <div class="b-press-entry__date">{{ entry.release_date }}</div>
+        <div class="b-press-entry__title">
+            <a href="{% pageurl entry %}">{{ entry.title }}</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
