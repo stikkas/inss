@@ -810,11 +810,11 @@ html, body {
 	clear: both;
 }
 .requisite__name {
-	width: 70px;
+	width: 90px;
 	float: left;
 }
 .requisite__value {
-	width: 178px;
+	width: 158px;
 	float: right;
 }
 /* end: requisites */

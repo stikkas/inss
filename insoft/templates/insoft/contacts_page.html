@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block side_panels %}
+    {% news_widget cnews=0 %}
 	<div class="side-panel">
 		<span class="side-panel__label">Реквизиты</span>
 		<div class="requisites">
@@ -18,7 +19,6 @@
 			{% endfor %}
 		</div>
 	</div>
-	{% news_widget cnews=0 %}
 {% endblock %}
 
 {% block workspace_body %}
