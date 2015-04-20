@@ -907,4 +907,11 @@ html, body {
 	color: #575757;
 	font-size: 14px;
 }
+.document__scan {
+    padding-left: 10px;
+    padding-right: 10px;
+   cursor: pointer;
+    text-align: center;
+}
+
 /* end: documents */

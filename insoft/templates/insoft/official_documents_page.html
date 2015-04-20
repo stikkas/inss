@@ -1,5 +1,5 @@
 {% extends 'insoft/base.html' %}
-{% load static i18n wagtailimages_tags %}
+{% load wagtailimages_tags %}
 
 {% block workspace_body %}
 	{% for category in self.categories %}
@@ -9,65 +9,38 @@
 
 		<ul class="documents">
 			{% for doc in category.documents %}
-				<li>
-					<div class="document__scan">
-                        <a href="#"
-                           onclick="showGalary('{{ doc.description }}',
-                        '{{ doc.scans.first.scan.file }}', '{{ doc.scans.first.scan.file }}')">
-                            {% image doc.scans.first.scan fill-150x220 %}</a>
-                        <!--
-                           {% image doc.scans.first.scan fill-150x220 %}
-                           -->
-						<span class="document__description">{{ doc.description }}</span>
-					</div>
-				</li>
+
+                {% with doc.scans.first.scan as scan %}
+                    <script>
+                        var _sD{{forloop.parentloop.counter}}{{forloop.counter}} = [{
+                        src: '{{scan.file}}',
+                        w: {{scan.width}},
+                        h: {{scan.height}}
+                    }];
+                    </script>
+                {% endwith %}
+
+                {% if doc.scans.count == 2 %}
+                    {% with doc.scans.last.scan as scan %}
+                        <script>
+                            _sD{{forloop.parentloop.counter}}{{forloop.counter}}.push({
+                            src: '{{scan.file}}',
+                            w: {{scan.width}},
+                            h: {{scan.height}}
+                        });
+                        </script>
+                    {% endwith %}
+                {% endif %}
+
+                <li>
+                    <div class="document__scan"
+                         onclick="showGalary('{{ doc.description }}', _sD{{forloop.parentloop.counter}}{{forloop.counter}})">
+                            {% image doc.scans.first.scan fill-150x220 %}
+                        <span class="document__description">{{ doc.description }}</span>
+                    </div>
+                </li>
 			{% endfor %}
 		</ul>
 	{% endfor %}
-{% endblock %}
-
-{% block js %}
-    <link rel="stylesheet" href="{% static 'insoft/js/vendor/photoswipe/photoswipe.css' %}">
-    <link rel="stylesheet" href="{% static 'insoft/js/vendor/photoswipe/default-skin/default-skin.css' %}">
-
-    <script src="{% static 'insoft/js/vendor/photoswipe/photoswipe.min.js' %}"></script>
-    <script src="{% static 'insoft/js/vendor/photoswipe/photoswipe-ui-default.min.js' %}"></script>
-    <script src="{% static 'insoft/js/utils.js' %}"></script>
-
-    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="pswp__bg"></div>
-        <div class="pswp__scroll-wrap">
-            <div class="pswp__container">
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-            </div>
-            <div class="pswp__ui pswp__ui--hidden">
-                <div class="pswp__top-bar">
-                    <div class="pswp__counter"></div>
-                    <button class="pswp__button pswp__button--close" title="{% trans 'Закрыть (Esc)' %}"></button>
-                    <button class="pswp__button pswp__button--share" title="{% trans 'Поделиться' %}"></button>
-                    <button class="pswp__button pswp__button--fs" title="{% trans 'На весь экран' %}"></button>
-                    <button class="pswp__button pswp__button--zoom" title="{% trans 'Увеличить/Уменьшить' %}"></button>
-                    <div class="pswp__preloader">
-                        <div class="pswp__preloader__icn">
-                            <div class="pswp__preloader__cut">
-                                <div class="pswp__preloader__donut"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                    <div class="pswp__share-tooltip"></div>
-                </div>
-                <button class="pswp__button pswp__button--arrow--left" title="{% trans 'Предыдущий (левая стрелка)' %}">
-                </button>
-                <button class="pswp__button pswp__button--arrow--right" title="{% trans 'Следующий (правая стрелка)' %}">
-                </button>
-                <div class="pswp__caption">
-                    <div class="pswp__caption__center"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'insoft/include/galery_pane.html' %}
 {% endblock %}

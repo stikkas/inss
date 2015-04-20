@@ -1,35 +1,23 @@
-
-function showGalary() {
-    console.log(arguments);
+/**
+ * Показывает рисунки поверх сайта (галерея)
+ * @param {String} title - подпись для рисyнков
+ * @param {Object[]} scans - рисунки
+ */
+function showGalary(title, scans) {
     var pswpElement = document.querySelectorAll('.pswp')[0],
         title = arguments[0],
         items = [];
-    for (var i = 1; i < arguments.length; ++i)
-        items.push({src:'/media/' + arguments[i],
-            title: title,
-            w: 1000,
-             h: 1334
-        });
-    /*
-    var items = [{
-            src:
-        },
-        {
-            src: 'https://placekitten.com/1200/900'
-//            w: 1200,
- //           h: 900
-        }
-    ];
-    */
+    scans.forEach(function(it){
+      items.push({src: '/media/' + it.src,
+          title: title, w: it.w, h: it.h});
+    });
 
-// define options (if needed)
     var options = {
         index: 0, // start at first slide
-        bgOpacity: 0.3,
+        bgOpacity: 0.5,
         shareEl: false
     };
 
-// Initializes and opens PhotoSwipe
     var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
 }
