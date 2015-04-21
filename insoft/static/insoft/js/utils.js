@@ -3,13 +3,12 @@
  * @param {String} title - подпись для рисyнков
  * @param {Object[]} scans - рисунки
  */
-function showGalary(title, scans) {
+function showGalary(/*title,*/ scans) {
     var pswpElement = document.querySelectorAll('.pswp')[0],
-        title = arguments[0],
         items = [];
     scans.forEach(function(it){
       items.push({src: '/media/' + it.src,
-          title: title, w: it.w, h: it.h});
+           w: it.w, h: it.h});
     });
 
     var options = {

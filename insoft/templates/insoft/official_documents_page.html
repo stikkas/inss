@@ -34,7 +34,7 @@
 
                 <li>
                     <div class="document__scan"
-                         onclick="showGalary('{{ doc.description }}', _sD{{forloop.parentloop.counter}}{{forloop.counter}})">
+                         onclick="showGalary(_sD{{forloop.parentloop.counter}}{{forloop.counter}})">
                             {% image doc.scans.first.scan fill-150x220 %}
                         <span class="document__description">{{ doc.description }}</span>
                     </div>
