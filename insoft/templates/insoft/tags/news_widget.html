@@ -23,31 +23,30 @@
 		<!-- start: b-cnews-ads -->
 		{% if cnews_entries %}
 			<div class="b-cnews-ads">
-				<div class="b-cnews-ads__item">
-					<div class="b-cnews-ads__item-img">
-						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-					</div>
-					<div class="b-cnews-ads__item-desc">
-						<a href="#">Mail.ru переходит на краудсорсинговые карты</a>
-					</div>
-				</div>
-				<div class="b-cnews-ads__item">
-					<div class="b-cnews-ads__item-img">
-						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-					</div>
-					<div class="b-cnews-ads__item-desc">
-						<a href="#">В России начались продажи смартфонов на Firefox OS</a>
-					</div>
-				</div>
-				<div class="b-cnews-ads__item">
-					<div class="b-cnews-ads__item-img">
-						<img src="{% static 'insoft/fixtures/news-cnews.jpg' %}" title="C-News">
-					</div>
-					<div class="b-cnews-ads__item-desc">
-						<a href="#">В России начались продажи</a>
-					</div>
-				</div>
 			</div>
+            <script>
+                $.ajax({
+                    url: document.location.protocol +
+                    '//ajax.googleapis.com/ajax/services/feed/load?v=2.0&num=3&callback=?&q='
+                    + encodeURIComponent('http://cnews.ru/rss/news.xml'),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.responseData.feed && data.responseData.feed.entries) {
+                            var div = $('.b-cnews-ads');
+                            $.each(data.responseData.feed.entries, function (i, e) {
+                                div.append(
+                                        '<div class="b-cnews-ads__item">' +
+                                        '<div class="b-cnews-ads__item-img">' +
+                                        '<img src="' +  "{% static 'insoft/fixtures/news-cnews.jpg' %}" +
+                                        '" title="C-News"></div>' +
+                                        '<div class="b-cnews-ads__item-desc">' +
+                                        '<a href="' + e.link + '" target="_blank">' +
+                                        e.title + '</a></div></div>');
+                            });
+                        }
+                    }
+                });
+            </script>
 		{% endif %}
 		<!-- end: b-cnews-ads -->
 
