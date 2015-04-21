@@ -508,10 +508,13 @@ html, body {
 	color: #5b5b5b;
 	font-family: Georgia, serif;
 	margin-bottom: 15px;
+    float: left;
+}
+.b-clients__label a {
+    text-decoration: none;
+    color: inherit;
 }
 .b-clients__showcase-controls {
-	position: relative;
-	top: -38px;
 	height: 23px;
 	text-align: right;
 }
