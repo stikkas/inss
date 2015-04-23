@@ -32,16 +32,19 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data.responseData.feed && data.responseData.feed.entries) {
-                            var div = $('.b-cnews-ads');
+                            var div = $('.b-cnews-ads'),
+                                    ms = 70;
                             $.each(data.responseData.feed.entries, function (i, e) {
+                                var ft = e.title,
+                                        ct = ft.length > ms ? ft.substr(0, ms).trim().concat('...') : ft;
                                 div.append(
                                         '<div class="b-cnews-ads__item">' +
                                         '<div class="b-cnews-ads__item-img">' +
                                         '<img src="' +  "{% static 'insoft/fixtures/news-cnews.jpg' %}" +
                                         '" title="C-News"></div>' +
                                         '<div class="b-cnews-ads__item-desc">' +
-                                        '<a href="' + e.link + '" target="_blank">' +
-                                        e.title + '</a></div></div>');
+                                        '<a href="' + e.link + '" target="_blank" title=\'' + ft + '\'>' +
+                                        ct + '</a></div></div>');
                             });
                         }
                     }

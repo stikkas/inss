@@ -1,3 +1,5 @@
+
+# encoding: utf-8
 import datetime
 import time
 
@@ -5,7 +7,7 @@ from django.conf.urls import url
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 
@@ -206,12 +208,26 @@ class CustomersPage(RoutablePageMixin, Page):
     subpage_types = ['insoft.CustomerPage']
     subpage_urls = (
         url(r'^$', 'map', name='customers_map'),
+        url(r'^location/(?P<location_code>ru-mow|ru-spe)/$',
+            'fed_cust_on_location', name='customers_on_location'),
         url(r'^location/(?P<location_code>[a-z-]{2,10})/$',
             'customers_on_location', name='customers_on_location'),
     )
 
     def map(self, request):
         return render(request, self.template, {'self': self})
+
+    # В Москве и Питере несколько страниц
+    def fed_cust_on_location(self, request, location_code):
+        location = maps.get_location(maps.RUSSIA, location_code)
+        if not location:
+            raise Http404
+
+        customers = CustomerPage.objects.filter(
+            live=True,
+            location_on_map=location.code
+        ).defer('content')
+        return self._return_lp(request, customers, location)
 
     def customers_on_location(self, request, location_code):
         location = maps.get_location(maps.RUSSIA, location_code)
@@ -223,6 +239,14 @@ class CustomersPage(RoutablePageMixin, Page):
             location_on_map=location.code
         ).defer('content')
 
+        if len(customers) > 0:
+            # На один регион одна страница
+            return HttpResponseRedirect(customers[0].relative_url(request.site))
+
+        # Значит в регионе нет заказчиков
+        return self._return_lp(request, customers, location)
+
+    def _return_lp(self, request, customers, location):
         return render(request, 'insoft/customers_on_location_page.html', {
             'customers': customers,
             'self': self,
