@@ -1,0 +1,243 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-23 12:29+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: insoft/models.py:34 insoft/models.py:50 insoft/models.py:83
+#: insoft/models.py:130 insoft/models.py:277
+msgid "Headline"
+msgstr ""
+
+#: insoft/models.py:35 insoft/models.py:51 insoft/models.py:280
+#: insoft/models.py:299 insoft/models.py:340
+msgid "Content"
+msgstr "Содержимое"
+
+#: insoft/models.py:39
+msgid "Start page"
+msgstr "Домашняя страница"
+
+#: insoft/models.py:55
+msgid "Simple page"
+msgstr "Простая страница"
+
+#: insoft/models.py:67
+msgid "Period"
+msgstr "Период"
+
+#: insoft/models.py:68 insoft/models.py:264
+msgid "Record"
+msgstr "Запись"
+
+#: insoft/models.py:84 insoft/models.py:501
+msgid "Preface"
+msgstr ""
+
+#: insoft/models.py:88
+msgid "Chronology"
+msgstr ""
+
+#: insoft/models.py:94
+msgid "Records"
+msgstr "Записи"
+
+#: insoft/models.py:102 insoft/models.py:487
+msgid "Name"
+msgstr "Название"
+
+#: insoft/models.py:105
+msgid "Face"
+msgstr ""
+
+#: insoft/models.py:111
+msgid "Position"
+msgstr ""
+
+#: insoft/models.py:112
+msgid "Biography"
+msgstr ""
+
+#: insoft/models.py:116
+msgid "Crewman"
+msgstr ""
+
+#: insoft/models.py:138
+msgid "Crew"
+msgstr ""
+
+#: insoft/models.py:156
+msgid "Official documents"
+msgstr ""
+
+#: insoft/models.py:168
+msgid "Documents category"
+msgstr ""
+
+#: insoft/models.py:175
+msgid "Scan"
+msgstr ""
+
+#: insoft/models.py:193
+msgid "Description"
+msgstr ""
+
+#: insoft/models.py:197
+msgid "Document"
+msgstr ""
+
+#: insoft/models.py:202
+msgid "Scans"
+msgstr ""
+
+#: insoft/models.py:258
+msgid "Customers page"
+msgstr "Страница заказчиков"
+
+#: insoft/models.py:263
+msgid "Title"
+msgstr "Заголовок"
+
+#: insoft/models.py:278
+msgid "Location on map"
+msgstr ""
+
+#: insoft/models.py:284
+msgid "Customer page"
+msgstr "Страница заказчика"
+
+#: insoft/models.py:291
+msgid "Customers"
+msgstr "Заказчики"
+
+msgid "Customer"
+msgstr "Заказчик"
+
+#: insoft/models.py:303
+msgid "Products page"
+msgstr ""
+
+#: insoft/models.py:322
+msgid "Product category page"
+msgstr ""
+
+#: insoft/models.py:334
+msgid "Product subcategory page"
+msgstr ""
+
+#: insoft/models.py:344
+msgid "Product page"
+msgstr ""
+
+#: insoft/models.py:355
+msgid "Link"
+msgstr ""
+
+#: insoft/models.py:427
+msgid "Press page"
+msgstr ""
+
+#: insoft/models.py:440
+msgid "Body"
+msgstr ""
+
+#: insoft/models.py:442
+msgid "Release date"
+msgstr ""
+
+#: insoft/models.py:445
+msgid "Feed image"
+msgstr ""
+
+#: insoft/models.py:458
+msgid "Press entry"
+msgstr ""
+
+#: insoft/models.py:472
+msgid "Map"
+msgstr ""
+
+#: insoft/models.py:473
+msgid "Info"
+msgstr ""
+
+#: insoft/models.py:488
+msgid "Value"
+msgstr ""
+
+#: insoft/models.py:505
+msgid "Contacts page"
+msgstr ""
+
+#: insoft/models.py:510
+msgid "Offices"
+msgstr ""
+
+#: insoft/models.py:511
+msgid "Requisites"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:21
+msgid "Закрыть (Esc)"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:22
+msgid "Поделиться"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:23
+msgid "На весь экран"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:24
+msgid "Увеличить/Уменьшить"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:36
+msgid "Предыдущий (левая стрелка)"
+msgstr ""
+
+#: insoft/templates/insoft/include/galery_pane.html:38
+msgid "Следующий (правая стрелка)"
+msgstr ""
+
+#: insoft/templates/insoft/include/header.html:59
+msgid "Написать письмо"
+msgstr ""
+
+#: insoft/templates/insoft/include/header.html:62
+msgid "Отправить запрос"
+msgstr ""
+
+#: insoft/templates/insoft/include/header.html:65
+msgid "Поиск"
+msgstr ""
+
+#: insoft/templates/insoft/press_archive_page.html:6
+msgid "Архив за"
+msgstr ""
+
+#: insoft/templates/insoft/tags/news_tags_cloud.html:4
+msgid "Темы"
+msgstr ""
+
+#: insoft/templates/insoft/tags/news_widget.html:5
+msgid "Новости компании"
+msgstr ""
+
+#: insoft/templates/insoft/tags/press_archive_date_filter.html:4
+msgid "Архив"
+msgstr ""

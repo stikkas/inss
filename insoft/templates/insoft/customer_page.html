@@ -8,5 +8,10 @@
 {% endblock %}
 
 {% block workspace_body %}
-	{{ self.content|richtext }}
+   {% for customer in self.customers.all %}
+        <div>
+            <span>{{ customer.title }}</span>
+        </div>
+        {{ customer.record | richtext }}
+    {% endfor %}
 {% endblock %}

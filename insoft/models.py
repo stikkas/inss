@@ -226,7 +226,7 @@ class CustomersPage(RoutablePageMixin, Page):
         customers = CustomerPage.objects.filter(
             live=True,
             location_on_map=location.code
-        ).defer('content')
+        ).defer('title')
         return self._return_lp(request, customers, location)
 
     def customers_on_location(self, request, location_code):
@@ -237,7 +237,7 @@ class CustomersPage(RoutablePageMixin, Page):
         customers = CustomerPage.objects.filter(
             live=True,
             location_on_map=location.code
-        ).defer('content')
+        ).defer('title')
 
         if len(customers) > 0:
             # На один регион одна страница
@@ -258,6 +258,21 @@ class CustomersPage(RoutablePageMixin, Page):
         verbose_name = _('Customers page')
 
 
+class CustomerRecord(Orderable):
+    page = ParentalKey('insoft.CustomerPage', related_name='customers')
+    title = models.CharField(_('Title'), max_length=100)
+    record = RichTextField(_('Customer'), blank=True, null=True)
+
+    panels = [
+        FieldPanel('title', classname='full title'),
+        FieldPanel('record', classname='full'),
+    ]
+
+    class Meta:
+        db_table = 'insoft_customer_record'
+        ordering = ['sort_order']
+
+
 class CustomerPage(Page):
     headline = models.CharField(_('Headline'), max_length=HEADLINE_LEN, blank=True, null=True)
     location_on_map = models.CharField(_('Location on map'), max_length=10,
@@ -273,6 +288,7 @@ CustomerPage.content_panels = [
     FieldPanel('headline', classname='full title'),
     FieldPanel('location_on_map', classname='full title'),
     FieldPanel('content', classname='full'),
+    InlinePanel(CustomerPage, 'customers', label=_('Customers')),
 ]
 
 

@@ -13,6 +13,9 @@ from os.path import abspath, dirname, join
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
 
+LOCALE_PATHS = (
+    join(PROJECT_ROOT, 'locale'),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -152,3 +155,4 @@ WAGTAIL_SITE_NAME = "insoft"
 
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
+
