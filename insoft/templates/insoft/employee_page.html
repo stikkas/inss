@@ -1,0 +1,10 @@
+{% extends 'insoft/base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block workspace %}
+    <div class="workspace" style="
+            background: url('/media/{{ self.background.file }}') no-repeat; background-size: cover">
+        <div class="workspace__body" style="overflow: hidden">
+            {% image self.foreground original %}
+        </div>
+    </div>
+{% endblock %}

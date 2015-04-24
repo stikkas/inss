@@ -61,6 +61,35 @@ SimplePage.content_panels = [
 ]
 
 
+# Страница 'Портрет Сотрудника'
+class EmployeePage(Page):
+    background = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Background'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    foreground = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Foreground'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    class Meta:
+        db_table = 'insoft_employee_page'
+        verbose_name = _('Employee page')
+
+EmployeePage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    ImageChooserPanel('background'),
+    ImageChooserPanel('foreground'),
+]
+
 # Chronology
 class ChronologyRecord(Orderable):
     page = ParentalKey('insoft.ChronologyPage', related_name='records')
