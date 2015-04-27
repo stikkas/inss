@@ -17,26 +17,42 @@
 	</div>
 
 	<!-- start: b-services-showcase -->
-	<span class="b-services-showcase__label">Направления деятельности:</span>
-	<div class="b-services-showcase">
-		<div class="b-services-showcase__left-block">
-			<div class="b-services-showcase__item b-services-showcase__item_red-db">
-				<strong>Разработка</strong> информационных систем
-			</div>
-			<div class="b-services-showcase__separator"></div>
-			<div class="b-services-showcase__item b-services-showcase__item_blue-network">
-				<strong>Внедрение</strong> информационных систем
-			</div>
-		</div>
-		<div class="b-services-showcase__right-block">
-			<div class="b-services-showcase__item b-services-showcase__item_red-chart">
-				<strong>Сопровождение</strong> информационных систем
-			</div>
-			<div class="b-services-showcase__separator"></div>
-			<div class="b-services-showcase__item b-services-showcase__item_blue-db">
-				<strong>Интеграция</strong> информационных систем
-			</div>
-		</div>
-	</div>
-	<!-- end: b-services-showcase -->
+    {% if self.directions %}
+        <span class="b-services-showcase__label">Направления деятельности:</span>
+        <div class="b-services-showcase">
+            <div class="b-services-showcase__left-block">
+            </div>
+            <div class="b-services-showcase__right-block">
+            </div>
+            <script>
+                var _sp_lb = $('.b-services-showcase__left-block'),
+                    _sp_rb = $('.b-services-showcase__right-block');
+            </script>
+            {% for direction in self.directions.all %}
+                <script>
+                    var _Y1 = $().add('<div>');
+                    _Y1.addClass('b-services-showcase__item')
+                            .css('background', 'url(' +
+                            "'/media/{{ direction.icon.file }}') left center no-repeat")
+                            .append('{{ direction.text|richtext }}');
+                </script>
+                {% if direction.link.url %}
+                    <script>
+                      _Y1.css('cursor', 'pointer')
+                          .click(function(){window.location='{{ direction.link.url }}'})
+                    </script>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <script>
+                        _sp_rb.append(_Y1);
+                    </script>
+                {% else %}
+                    <script>
+                        _sp_lb.append(_Y1);
+                    </script>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!-- end: b-services-showcase -->
 {% endblock %}

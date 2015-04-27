@@ -24,7 +24,6 @@
 
             /* Align left-panel and workspace by height */
             if (leftPanel.outerHeight() > workspace.outerHeight()) {
-                console.log("I'm here");
                 workspaceBody.height(workspaceBody.height() + (leftPanel.outerHeight() - workspace.outerHeight()));
             }
 

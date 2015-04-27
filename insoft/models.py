@@ -29,6 +29,34 @@ HEADLINE_LEN = 100
 LAST_ENTRIES_ON_PAGE = 20
 
 
+class Direction(Orderable):
+    page = ParentalKey('insoft.StartPage', related_name='directions')
+    text = RichTextField(_('Direction'), blank=True, null=True)
+    link = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        related_name='+'
+    )
+    icon = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Icon'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    panels = [
+        FieldPanel('text', classname='full'),
+        PageChooserPanel('link'),
+        ImageChooserPanel('icon'),
+    ]
+
+    class Meta:
+        db_table = 'insoft_start_direction'
+        ordering = ['sort_order']
+
+
 # Start page
 class StartPage(Page):
     headline = models.CharField(_('Headline'), max_length=HEADLINE_LEN, blank=True, null=True)
@@ -42,6 +70,7 @@ StartPage.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('headline', classname='full title'),
     FieldPanel('content', classname='full'),
+    InlinePanel(StartPage, 'directions', label=_('Directions')),
 ]
 
 
