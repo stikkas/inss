@@ -26,32 +26,30 @@
             </div>
             <script>
                 var _sp_lb = $('.b-services-showcase__left-block'),
-                    _sp_rb = $('.b-services-showcase__right-block');
-            </script>
-            {% for direction in self.directions.all %}
-                <script>
+                    _sp_rb = $('.b-services-showcase__right-block'),
+                    _sp_cr;
+                {% for direction in self.directions.all %}
                     var _Y1 = $().add('<div>');
                     _Y1.addClass('b-services-showcase__item')
                             .css('background', 'url(' +
                             "'/media/{{ direction.icon.file }}') left center no-repeat")
                             .append('{{ direction.text|richtext }}');
-                </script>
-                {% if direction.link.url %}
-                    <script>
-                      _Y1.css('cursor', 'pointer')
-                          .click(function(){window.location='{{ direction.link.url }}'})
-                    </script>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                    <script>
+                    {% if direction.link.url %}
+                          _Y1.css('cursor', 'pointer')
+                              .click(function(){window.location='{{ direction.link.url }}'})
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
                         _sp_rb.append(_Y1);
-                    </script>
-                {% else %}
-                    <script>
+                        _sp_cr = _sp_rb;
+                    {% else %}
                         _sp_lb.append(_Y1);
-                    </script>
-                {% endif %}
-            {% endfor %}
+                        _sp_cr = _sp_lb;
+                    {% endif %}
+                    {% if not forloop.last and forloop.revcounter0 != 1 %}
+                        _sp_cr.append('<div class="b-services-showcase__separator"></div>');
+                    {% endif %}
+                {% endfor %}
+            </script>
         </div>
     {% endif %}
     <!-- end: b-services-showcase -->
