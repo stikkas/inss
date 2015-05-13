@@ -294,8 +294,8 @@ class CustomersPage(RoutablePageMixin, Page):
 
         customers = CustomerPage.objects.filter(
             live=True,
-            location_on_map=location.code
-        ).defer('title')
+            location_on_map=location.code,
+        ).exclude(content=None).defer('title')
 
         if len(customers) > 0:
             # На один регион одна страница
