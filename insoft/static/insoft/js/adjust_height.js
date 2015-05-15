@@ -1,7 +1,7 @@
 (function($) {
     $(document).ready(function(){
         window.adjustHeight = function(min_height) {
-            var MIN_HEIGHT = min_height || 700;
+            var MIN_HEIGHT = min_height || 900;
             var windowHeight = $(window).outerHeight() - 1;
             var siteHeight = $('.layout-base').outerHeight();
             var leftPanel = $('.content__side-panel');

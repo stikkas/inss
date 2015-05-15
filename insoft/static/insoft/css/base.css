@@ -70,13 +70,13 @@ html, body {
 }
 .locations__item {
 	display: table-cell;
-	padding-left: 32px;
+/*	padding-left: 32px;*/
 /*	background: url(../img/locator.png) left top no-repeat;*/
 }
 .locations__item a {
     float: left;
-    margin-right: 4px;
-    height: 45px;
+    margin-right: 20px;
+    height: 55px;
 }
 /* end: locations */
 

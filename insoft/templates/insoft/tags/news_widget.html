@@ -33,7 +33,7 @@
                     success: function (data) {
                         if (data.responseData.feed && data.responseData.feed.entries) {
                             var div = $('.b-cnews-ads'),
-                                    ms = 70;
+                                    ms = 60;
                             $.each(data.responseData.feed.entries, function (i, e) {
                                 var ft = e.title,
                                         ct = ft.length > ms ? ft.substr(0, ms).trim().concat('...') : ft;
@@ -46,7 +46,12 @@
                                         '<a href="' + e.link + '" target="_blank" title=\'' + ft + '\'>' +
                                         ct + '</a></div></div>');
                             });
-                        }
+                            if (window.adjustHeight) {
+                                 window.adjustHeight();
+                                 window.adjustHeight();
+                                 $(window).resize(function(){ window.adjustHeight() });
+                             }
+                         }
                     }
                 });
             </script>
