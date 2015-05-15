@@ -14,10 +14,11 @@
 		<!-- start: locations -->
 		<ul class="locations">
 			<li class="locations__item">
+                <a href="г.+Москва,+ул.+Вятская,+д.+35,+стр.+4"><img src="{% static 'insoft/img/locator.png' %}" title="Перейти на карту"/></a>
 				<div class="location">
 					<span class="location__address-city">Москва</span>
-					<span class="location__address-street">Гамсоновский переулок,</span>
-					<span class="location__address-home">д. 2</span>
+					<span class="location__address-street">улица Вятская,</span>
+					<span class="location__address-home">д. 35, стр. 4</span>
 					<div class="location__phone">
 						<span class="location__phone-code">+7 (495)</span>
 						<span class="location__phone-number">933-95-30</span>
@@ -25,9 +26,10 @@
 				</div>
 			</li>
 			<li class="locations__item">
+                <a href="г.+Санкт-Петербург,+ул.+Шпалерная,д.+51"><img src="{% static 'insoft/img/locator.png' %}" title="Перейти на карту"/></a>
 				<div class="location">
 					<span class="location__address-city">Санкт-Петербург</span>
-					<span class="location__address-street">Улица Шпалерная,</span>
+					<span class="location__address-street">улица Шпалерная,</span>
 					<span class="location__address-home">д. 51, лит. "А"</span>
 					<div class="location__phone">
 						<span class="location__phone-code">+7 (812)</span>
@@ -36,9 +38,10 @@
 				</div>
 			</li>
 			<li class="locations__item">
+                <a href="г.+Нижний+Новгород,+ул.+Белинского,+д.+32"><img src="{% static 'insoft/img/locator.png' %}" title="Перейти на карту"/></a>
 				<div class="location">
 					<span class="location__address-city">Нижний Новгород</span>
-					<span class="location__address-street">Улица Белинского,</span>
+					<span class="location__address-street">улица Белинского,</span>
 					<span class="location__address-home">д. 32</span>
 					<div class="location__phone">
 						<span class="location__phone-code">+7 (831)</span>
@@ -49,6 +52,12 @@
 		</ul>
 		<!-- end: locations -->
 	</div>
+    <script>
+        $('.locations__item > a').click(function(){
+            window.open('https://maps.google.ru/maps?f=q&hl=ru&oe=utf8&q=' + $(this).attr('href'), '_blank');
+            return false;
+        });
+    </script>
 
 	<div class="header__liner"></div>
 
