@@ -1,0 +1,47 @@
+{% load wagtailcore_tags wagtailimages_tags static %}
+<div class="b-clients">
+	<div class="b-clients__label"><a href="/formula/zakazchik2/">Заказчики</a></div>
+	<div class="b-clients__showcase-controls">
+		<a href="#"><img src="{% static 'insoft/img/clients-showcase-arrow-backward.jpg' %}" title="Прокрутить назад"></a>
+		&nbsp;
+		<a href="#"><img src="{% static 'insoft/img/clients-showcase-arrow-forward.jpg' %}" title="Прокрутить вперед"></a>
+	</div>
+	<div class="b-clients__showcase">
+		<!-- start: b-clients-showcase -->
+        {% if customer_links %}
+		<ul class="b-clients-showcase">
+            {% for cust in customer_links %}
+                <li class="b-clients-showcase__item">
+                    {% if cust.page %}
+                    <a href="{% pageurl cust.page %}">
+                        {% if cust.emblem %}
+                            {% image cust.emblem max-250x50 %}
+                            <div style="display:none; position: relative">
+                                {% image cust.emblem original %}
+                                <div>{{ cust.title }}</div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if cust.page %}</a>{% endif %}
+                </li>
+                {% if not forloop.last %}
+                    <li class="b-clients-showcase__separator"></li>
+                {% endif %}
+            {% endfor %}
+		</ul>
+        <script>
+            $('.b-clients-showcase__item > a > img').hover(function() {
+                $(this).css('display', 'none');
+                $(this).next().css('display', '');
+            });
+            $('.b-clients-showcase__item > a > div').hover(function(){
+
+            }, function(){
+                $(this).css('display', 'none');
+                $(this).prev().css('display', '');
+            });
+        </script>
+        {% endif %}
+		<!-- end: b-clients-showcase -->
+	</div>
+</div>

@@ -20,3 +20,4 @@ function showGalary(/*title,*/ scans) {
     var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
 }
+

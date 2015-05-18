@@ -524,8 +524,6 @@ html, body {
 	text-align: right;
 }
 .b-clients__showcase {
-	position: relative;
-	margin-top: -23px;
 	width: 1136px;
 	overflow: hidden;
 }
@@ -534,19 +532,37 @@ html, body {
 
 /* start block: showcase */
 .b-clients-showcase {
+    position: relative;
+    top: -10px;
+    padding: 0;
 	display: table;
-	padding: 0;
-	margin: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .b-clients-showcase__item {
 	display: table-cell;
 }
+
 .b-clients-showcase__item a{
+    text-decoration: none;
 	display: block;
 	height: 50px;
 	float: left;
 	margin-right: 25px;
 }
+
+.b-clients-showcase__item div{
+    text-align: center;
+}
+
+.b-clients-showcase__item div > div{
+    text-align: center;
+    text-wrap: normal;
+    position: relative;
+    top: -50px;
+    width: 100px;
+}
+
 .b-clients-showcase__separator {
 	display: block;
 	float: left;

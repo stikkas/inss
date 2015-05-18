@@ -11,6 +11,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 
+from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
@@ -350,6 +351,38 @@ CustomerPage.content_panels = [
 ]
 
 
+# Customer in footer
+class Customer(Orderable):
+    page = models.ForeignKey(
+        'wagtailcore.Page',
+        related_name='customer_links',
+        verbose_name=_('Customer Page'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+    title = models.CharField(_('Customer Name'), max_length=255)
+    emblem = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Customer emblem'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    panels = [
+        PageChooserPanel('page', 'insoft.CustomerPage'),
+        FieldPanel('title'),
+        ImageChooserPanel('emblem')
+    ]
+
+    def __unicode__(self):
+        return self.title
+
+register_snippet(Customer)
+
+
 # Products
 class ProductsPage(Page):
     subpage_types = ['insoft.ProductCategoryPage']
@@ -568,3 +601,6 @@ ContactsPage.content_panels = [
     InlinePanel(ContactsPage, 'offices', label=_('Offices')),
     InlinePanel(ContactsPage, 'requisites', label=_('Requisites'))
 ]
+
+
+

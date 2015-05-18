@@ -7,7 +7,7 @@ from taggit.models import Tag
 from insoft.models import (
     PressPage, PressEntryPage, PressEntryTag,
     ProductsPage, ProductCategoryPage, ProductSubCategoryPage,
-    ProductPage, ProductLinkPage
+    ProductPage, ProductLinkPage, Customer
 )
 
 
@@ -156,3 +156,13 @@ def solutions_menu(context, current_page):
         'root_page': root_page,
         'request': context['request']
     }
+
+
+# Customer snippets
+@register.inclusion_tag('insoft/tags/clients.html', takes_context=True)
+def clients(context):
+    return {
+        'customer_links': Customer.objects.select_related('page'),
+        'request': context['request'],
+    }
+
