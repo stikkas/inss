@@ -2,9 +2,9 @@
 <div class="b-clients">
 	<div class="b-clients__label"><a href="/formula/zakazchik2/">Заказчики</a></div>
 	<div class="b-clients__showcase-controls">
-		<a href="#"><img src="{% static 'insoft/img/clients-showcase-arrow-backward.jpg' %}" title="Прокрутить назад"></a>
+		<img src="{% static 'insoft/img/clients-showcase-arrow-backward.jpg' %}" title="Прокрутить назад">
 		&nbsp;
-		<a href="#"><img src="{% static 'insoft/img/clients-showcase-arrow-forward.jpg' %}" title="Прокрутить вперед"></a>
+		<img src="{% static 'insoft/img/clients-showcase-arrow-forward.jpg' %}" title="Прокрутить вперед">
 	</div>
 	<div class="b-clients__showcase">
 		<!-- start: b-clients-showcase -->
@@ -24,11 +24,9 @@
                     {% endif %}
                     {% if cust.page %}</a>{% endif %}
                 </li>
-                {% if not forloop.last %}
-                    <li class="b-clients-showcase__separator"></li>
-                {% endif %}
             {% endfor %}
 		</ul>
+        <script src="{% static 'insoft/js/carousel.min.js' %}"></script>
         <script>
             $('.b-clients-showcase__item > a > img').hover(function() {
                 $(this).css('display', 'none');
@@ -40,6 +38,16 @@
                 $(this).css('display', 'none');
                 $(this).prev().css('display', '');
             });
+            var _b1k = $('.b-clients__showcase-controls');
+            $('.b-clients__showcase').Carousel({
+              visible: 9,
+              margin: 10,
+              rotateBy: 1,
+              speed: 500,
+              auto: false,
+              btnNext: _b1k.children(':first'),
+              btnPrev: _b1k.children(':last')
+          });
         </script>
         {% endif %}
 		<!-- end: b-clients-showcase -->

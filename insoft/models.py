@@ -319,7 +319,7 @@ class CustomersPage(RoutablePageMixin, Page):
 
 class CustomerRecord(Orderable):
     page = ParentalKey('insoft.CustomerPage', related_name='customers')
-    title = models.CharField(_('Title'), max_length=100)
+    title = models.CharField(_('Title'), max_length=255)
     record = RichTextField(_('Customer'), blank=True, null=True)
 
     panels = [
