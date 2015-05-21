@@ -5,7 +5,7 @@ html, body {
 
 /* start: layout-base */
 .layout-base {
-	background: #dde8f2 url(../img/background.jpg) center top no-repeat;
+	background: #dde8f2 url(../img/background.png) center top no-repeat;
 }
 .layout-base__head,
 .layout-base__body,
@@ -588,8 +588,8 @@ html, body {
     background: url(../img/background-footer.jpg) center center no-repeat;
     padding-left: 50px;
     margin-left: -50px;
-    padding-right: 30px;
-    margin-right: -30px;
+    padding-right: 45px;
+    margin-right: -45px;
 }
 
 .b-footer__copyright {
