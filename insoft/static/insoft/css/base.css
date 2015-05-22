@@ -5,7 +5,7 @@ html, body {
 
 /* start: layout-base */
 .layout-base {
-	background: #dde8f2 url(../img/background.png) center top no-repeat;
+	background: #dde8f2 url(../img/background-new.jpg) center top no-repeat;
 }
 .layout-base__head,
 .layout-base__body,
@@ -585,11 +585,18 @@ html, body {
 	font-family: Helvetica, Arial, sans-serif;
 	color: #515151;
 	font-size: 11px;
-    background: url(../img/background-footer.jpg) center center no-repeat;
+    /*
     padding-left: 50px;
     margin-left: -50px;
     padding-right: 45px;
     margin-right: -45px;
+    */
+}
+
+.image-footer {
+    height: 28px;
+    background: url(../img/background-footer.jpg) center center no-repeat;
+    margin-top: -28px;
 }
 
 .b-footer__copyright {
