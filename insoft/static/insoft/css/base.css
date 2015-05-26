@@ -552,19 +552,23 @@ html, body {
 	height: 50px;
 	float: left;
 	margin-right: 25px;
-}
-
-.b-clients-showcase__item div{
-    text-align: center;
-}
-
-.b-clients-showcase__item div > div{
-    text-align: center;
-    text-wrap: normal;
     position: relative;
-    top: -50px;
-    width: 100px;
 }
+
+.b-clients-showcase__item .client_big{
+    width: 100px;
+    height: 100px;
+    top: -25px;
+    left: -25px;
+    position: absolute;
+    z-index: 3;
+}
+
+.b-clients-showcase__item .client_small{
+    z-index: 1;
+}
+
+
 
 .b-clients-showcase__separator {
 	display: block;

@@ -15,11 +15,10 @@
                     {% if cust.page %}
                     <a href="{% pageurl cust.page %}">
                         {% if cust.emblem %}
-                            {% image cust.emblem max-250x50 %}
-                            <div style="display:none; position: relative">
-                                {% image cust.emblem original %}
-                                <div>{{ cust.title }}</div>
-                            </div>
+                            {% image cust.emblem max-300x100 as timg %}
+                            <img src="{{ timg.url }}" width="{{ timg.width }}" class="client_big" style="display: none;"
+                                height="{{ timg.height }}" alt="{{ cust.title }}" title="{{cust.title}}"/>
+                            {% image cust.emblem max-150x50 class="client_small" %}
                         {% endif %}
                     {% endif %}
                     {% if cust.page %}</a>{% endif %}
@@ -28,15 +27,13 @@
 		</ul>
         <script src="{% static 'insoft/js/carousel.min.js' %}"></script>
         <script>
-            $('.b-clients-showcase__item > a > img').hover(function() {
-                $(this).css('display', 'none');
-                $(this).next().css('display', '');
+            $('.b-clients-showcase__item .client_small').hover(function() {
+                $(this).prev().css('display', '');
             });
-            $('.b-clients-showcase__item > a > div').hover(function(){
+            $('.b-clients-showcase__item .client_big').hover(function(){
 
             }, function(){
                 $(this).css('display', 'none');
-                $(this).prev().css('display', '');
             });
             var _b1k = $('.b-clients__showcase-controls');
             $('.b-clients__showcase').Carousel({

@@ -404,6 +404,8 @@ class ProductCategoryPage(Page):
                      'insoft.ProductPage',
                      'insoft.ProductLinkPage']
 
+    content = RichTextField(_('Content'), blank=True, null=True)
+
     @property
     def products(self):
         return self.get_children().not_type(ProductSubCategoryPage)
@@ -412,6 +414,10 @@ class ProductCategoryPage(Page):
         db_table = 'insoft_product_category_page'
         verbose_name = _('Product category page')
 
+ProductCategoryPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    FieldPanel('content', classname='full'),
+]
 
 class ProductSubCategoryPage(Page):
     subpage_types = ['insoft.ProductPage', 'insoft.ProductLinkPage']

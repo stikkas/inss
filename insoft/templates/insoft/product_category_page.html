@@ -2,6 +2,9 @@
 {% load wagtailcore_tags %}
 
 {% block workspace_body %}
+    {% if self.content %}
+        {{ self.content|richtext }}
+    {% endif %}
 	<ul class="product-list">
 		{% for product in self.products %}
 			<li class="product-list__item">
