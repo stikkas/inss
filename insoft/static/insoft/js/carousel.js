@@ -88,7 +88,7 @@
 
             $this.css({
                 'position': 'relative', // необходимо для нормального отображения в ИЕ6(7)
-                'overflow': 'hidden', // прячем все, что не влезает в контейнер
+                'overflow-x': 'hidden', // прячем все, что не влезает в контейнер
                 'margin-left': 'auto',
                 'margin-right': 'auto',
                 'width': getVisibleWidth()

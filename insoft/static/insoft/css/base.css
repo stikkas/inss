@@ -526,14 +526,11 @@ html, body {
 .b-clients__showcase-controls img {
     cursor: pointer;
 }
-.b-clients__showcase {
-	width: 1136px;
-	overflow: hidden;
-}
 /* end block: clients */
 
 
 /* start block: showcase */
+
 .b-clients-showcase {
     position: relative;
     top: -15px;
@@ -549,17 +546,14 @@ html, body {
 .b-clients-showcase__item a{
     text-decoration: none;
 	display: block;
+    width: 70px;
 	height: 50px;
 	float: left;
-	margin-right: 25px;
     position: relative;
+    text-align: center;
 }
 
 .b-clients-showcase__item .client_big{
-    width: 100px;
-    height: 100px;
-    top: -25px;
-    left: -25px;
     position: absolute;
     z-index: 3;
 }
@@ -567,8 +561,6 @@ html, body {
 .b-clients-showcase__item .client_small{
     z-index: 1;
 }
-
-
 
 .b-clients-showcase__separator {
 	display: block;
@@ -589,12 +581,6 @@ html, body {
 	font-family: Helvetica, Arial, sans-serif;
 	color: #515151;
 	font-size: 11px;
-    /*
-    padding-left: 50px;
-    margin-left: -50px;
-    padding-right: 45px;
-    margin-right: -45px;
-    */
 }
 
 .image-footer {
